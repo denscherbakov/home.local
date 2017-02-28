@@ -1,0 +1,123 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500');
+
+// Variables
+@import "variables";
+
+$color-main: #3A4651;
+$color-body: #525D62;
+$color-font-main: #9CA2A8;
+$color-home-link: #5AC2E7;
+$color-nav-header: #D6DDE5;
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  background-color: $color-body;
+  line-height: 1.9em;
+}
+//LOGIN PAGE
+.right-column {
+  height: 100%;
+  background-color: $color-main;
+}
+
+.no-border-radius {
+  border-radius:  0;
+}
+
+.login-panel {
+  border: none;
+  box-shadow: black 0px 0px 20px 0px;
+}
+//END LOGIN PAGE
+
+//HEADER
+.user-avatar {
+  position: absolute;
+  max-height: 55px;
+  top: 5px;
+  right: 6px;
+}
+.user-login {
+  z-index: 999;
+  color: black;
+  position: absolute;
+  top: 22px;
+  right: 55px;
+  text-align: center;
+  max-width: 65px;
+  min-width: 65px;
+  font-weight: lighter;
+}
+.user-logout {
+  position: absolute;
+  top: 63px;
+  left: -160px;
+}
+.nav-header {
+  min-height: 65px;
+  margin-bottom: 0;
+  background-color: $color-nav-header;
+  ul {
+    float: right;
+    li {
+      position: relative;
+      list-style-type: none;
+    }
+  }
+}
+.nav-title {
+  margin-left: 60px;
+  color: white;
+  opacity: 0.7;
+}
+.navbar-brand {
+  padding: 23px 30px;
+}
+.nav-brand {
+  top: 0;
+  left: 0;
+  max-height: 80px;
+  position: absolute;
+}
+//END HEADER
+
+//RIGHT COLUMN
+.right-column-items {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+
+  .home-item {
+    background-color: $color-home-link;
+    color: white;
+  }
+
+  a {
+    padding: 10px 10px 10px 15px;
+    display: block;
+    color: $color-font-main;
+  }
+
+  .home-item:hover {
+    background-color: $color-home-link;
+    color: white;
+  }
+
+  a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: white;
+  }
+
+}
+//END RIGHT COLUMN
+
+//CONTENT
+.wrap {
+  margin: 25px 0px 0px 0px;
+}
+//END CONTENT
