@@ -27,18 +27,53 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Every user has his detail.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function userDetail()
     {
         return $this->hasOne(UserDetail::class);
     }
 
+    /**
+     * Every user can send a request to friends.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function send()
     {
-        return $this->hasMany(Request::class, 'sender_id');
+        return $this->hasMany('App\Request', 'sender_id');
     }
 
+    /**
+     * Every user cas get a request to friends.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function take()
     {
-        return $this->hasMany(Request::class, 'taker_id');
+        return $this->hasMany('App\Request', 'taker_id');
+    }
+
+    /**
+     * Every user can has many articles.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function article()
+    {
+        return $this->hasMany('App\Article');
+    }
+
+    /**
+     * Every user can like articles.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function likes()
+    {
+        return $this->belongsToMany('App\Article', 'likes', 'user_id', 'article_id')->withTimestamps();
     }
 }

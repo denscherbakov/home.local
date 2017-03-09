@@ -100,7 +100,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="modal-title">Редактирование данных</h4>
                 </div>
-                <form action="/user/edit/{{ $user->id }}" method="post" class="form-group" id="form-user-edit">
+                <form action="/users/edit/{{ $user->id }}" method="post" class="form-group" id="form-user-edit">
                     <div class="modal-body">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="text" name="first_name" class="form-control" value="{{ $user->userDetail->first_name }}">

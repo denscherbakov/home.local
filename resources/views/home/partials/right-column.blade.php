@@ -18,7 +18,7 @@
                 </a>
             @elseif(count($menu->parent) == 0 && count($menu->child) > 0)
                 <div class="panel">
-                    <a data-toggle="collapse" data-parent="#accordion"  href="#collapse{{$menu->id}}">
+                    <a data-toggle="collapse" data-parent="#accordion"  href="/#collapse{{$menu->id}}">
                         <i class="glyphicon glyphicon-{{$menu->glyph}}"></i> {{$menu->name}}
                         <span class="caret"></span>
                     </a>

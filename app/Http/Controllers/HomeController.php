@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\UserDetail;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Article;
 
 class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -19,12 +16,13 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application homepage.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('home.index');
+        $articles = Article::orderBy('id', 'desc')->paginate(5);
+        return view('home.index', ['articles' => $articles]);
     }
 }

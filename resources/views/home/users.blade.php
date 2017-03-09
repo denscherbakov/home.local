@@ -23,15 +23,22 @@
                 <div class="user-card col-md-3">
                     <img src="{{asset('img/user')}}/{{ $user->userDetail->avatar }}">
                     <div class="user-login-info">{{ $user->name }}</div>
-                    @if( Auth::user()->id == $req->sender_id && $user->id == $req->taker_id )
+
+                    @foreach( $user->send()->where('taker_id', Auth::user()->id)->get() as $req )
                         <button class="btn btn-default btn-block no-border-radius disabled">Отправлено</button>
-                        @break
-                    @elseif( Auth::user()->id == $req->taker_id && $user->id == $req->sender_id )
+                    @endforeach
+
+                    @foreach( $user->take()->where('sender_id', Auth::user()->id)->get() as $req )
                         <button class="btn btn-default btn-block no-border-radius">Принять</button>
-                        @break
-                    @elseif( )
+                    @endforeach
+
+                    {{--@foreach( $friends as $req )
+                        <button class="btn btn-default btn-block no-border-radius disabled">В друзьях</button>
+                    @endforeach
+
+                    @if( !$send->count() && !$take->count() )
                         <button id="add-user-button" data-id="{{ $user->id }}" class="btn btn-default btn-block no-border-radius">Добавить</button>
-                    @endif
+                    @endif--}}
                 </div>
             @endif
         @endforeach

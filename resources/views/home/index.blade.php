@@ -29,4 +29,37 @@
         <img src="{{ asset('img/owl/6.jpg') }}">
     </div>
 </div>
+
+    @foreach($articles as $article)
+        <hr>
+        <article>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3><a href="/article/{{ $article->id }}">{{ $article->title }}</a></h3>
+                </div>
+
+                <div class="panel-body" style="background-color: white">
+                    {{ $article->content }}
+                </div>
+
+                <div class="panel-footer">
+                    @if (Auth::check())
+                        @if($article->liked())
+                            <span>
+                                <a href="{{ url('/article/unlike/'.$article->id) }}"> <i class="fa fa-heart"></i></a>
+                            </span>
+                        @else
+                            <span>
+                                <a href="{{ url('/article/like/'.$article->id) }}"> <i class="fa fa-heart-o"></i></a>
+                            </span>
+                        @endif
+                    @endif
+                    <small>
+                        {{ $article->published_at }} / <a href="/article/user/{{ $article->author->id }}">{{ $article->author->name }}</a>
+                    </small>
+                </div>
+            </div>
+        </article>
+    @endforeach
+    {{ $articles->links() }}
 @endsection

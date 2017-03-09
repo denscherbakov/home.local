@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Menu;
+use App\Request as MyRequest;
 use App\User;
-use App\UserDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,10 +12,13 @@ class UserController extends Controller
     public function users()
     {
         $users = User::all();
-        dd($users[1]->send());
+        //dd($users[0]->send()->mySendRequests()->get());
         return view('home.users', ['users' => $users]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function personal()
     {
         $user = User::find(Auth::user()->id);
