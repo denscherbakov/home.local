@@ -6,7 +6,8 @@
         <div class="body">{{ $article->content }}</div>
         <div class="footer">
             <small>
-                {{ $article->published_at }} / {{ $article->author->name }}
+                {{ $article->published_at }} /
+                <a href="/article/user/{{ $article->author->id }}">{{ $article->author->name }}</a>
             </small>
         </div>
     </article>

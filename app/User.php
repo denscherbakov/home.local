@@ -44,7 +44,7 @@ class User extends Authenticatable
      */
     public function send()
     {
-        return $this->hasMany('App\Request', 'sender_id');
+        return $this->hasMany('App\Request', 'sender_id', 'id');
     }
 
     /**
@@ -54,7 +54,7 @@ class User extends Authenticatable
      */
     public function take()
     {
-        return $this->hasMany('App\Request', 'taker_id');
+        return $this->hasMany('App\Request', 'taker_id', 'id');
     }
 
     /**
@@ -76,4 +76,5 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Article', 'likes', 'user_id', 'article_id')->withTimestamps();
     }
+
 }

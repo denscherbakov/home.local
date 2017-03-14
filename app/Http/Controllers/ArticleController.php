@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,7 @@ class ArticleController extends Controller
      * Save a new article.
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -49,13 +50,12 @@ class ArticleController extends Controller
     /**
      * Like an article.
      *
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @internal param Article $article
+     * @param Article $article
+     * @return RedirectResponse
      */
-    public function likeArticle($id)
+    public function like(Article $article)
     {
-        Auth::user()->likes()->attach($id);
+        Auth::user()->likes()->attach($article->id);
 
         return back();
     }
@@ -64,9 +64,9 @@ class ArticleController extends Controller
      * Unlike an article.
      *
      * @param Article $article
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function unlikeArticle(Article $article)
+    public function unlike(Article $article)
     {
         Auth::user()->likes()->detach($article->id);
 

@@ -44,15 +44,10 @@
 
                 <div class="panel-footer">
                     @if (Auth::check())
-                        @if($article->liked())
-                            <span>
-                                <a href="{{ url('/article/unlike/'.$article->id) }}"> <i class="fa fa-heart"></i></a>
-                            </span>
-                        @else
-                            <span>
-                                <a href="{{ url('/article/like/'.$article->id) }}"> <i class="fa fa-heart-o"></i></a>
-                            </span>
-                        @endif
+                        <like
+                              :article={{ $article->id }}
+                              :liked={{ $article->liked() ? 'true' : 'false' }}
+                        ></like>
                     @endif
                     <small>
                         {{ $article->published_at }} / <a href="/article/user/{{ $article->author->id }}">{{ $article->author->name }}</a>

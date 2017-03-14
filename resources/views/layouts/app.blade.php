@@ -73,12 +73,13 @@
                     @include('home.partials.right-column')
                 </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10" id="app">
                 @yield('content')
             </div>
         </div>
     </div>
 </div>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery.formstyler.min.js') }}"></script>

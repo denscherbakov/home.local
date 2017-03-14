@@ -23,22 +23,26 @@
                 <div class="user-card col-md-3">
                     <img src="{{asset('img/user')}}/{{ $user->userDetail->avatar }}">
                     <div class="user-login-info">{{ $user->name }}</div>
-
-                    @foreach( $user->send()->where('taker_id', Auth::user()->id)->get() as $req )
-                        <button class="btn btn-default btn-block no-border-radius disabled">Отправлено</button>
+                    
+                    @foreach( $user->take()->whereSend()->accepted()->get() as $req )
+                        <div class="btn btn-default btn-block no-border-radius">В друзьях</div>
                     @endforeach
 
-                    @foreach( $user->take()->where('sender_id', Auth::user()->id)->get() as $req )
-                        <button class="btn btn-default btn-block no-border-radius">Принять</button>
+                    @foreach( $user->take()->whereSend()->noAccepted()->get() as $req )
+                        <div class="btn btn-default btn-block no-border-radius disabled">Отправлено</div>
                     @endforeach
 
-                    {{--@foreach( $friends as $req )
-                        <button class="btn btn-default btn-block no-border-radius disabled">В друзьях</button>
+                    @foreach( $user->send()->whereTake()->accepted()->get() as $req )
+                        <div class="btn btn-default btn-block no-border-radius">В друзьях</div>
                     @endforeach
 
-                    @if( !$send->count() && !$take->count() )
-                        <button id="add-user-button" data-id="{{ $user->id }}" class="btn btn-default btn-block no-border-radius">Добавить</button>
-                    @endif--}}
+                    @foreach( $user->send()->whereTake()->noAccepted()->get() as $req )
+                        <div onclick="location.href = '{{ URL('/') }}'"  class="btn btn-default btn-block no-border-radius">Принять</div>
+                    @endforeach
+
+                    @if( !$user->take()->whereSend()->count() &&  !$user->send()->whereTake()->count())
+                        <div id="add-user-button" data-id="{{ $user->id }}" class="btn btn-default btn-block no-border-radius">Добавить</div>
+                    @endif
                 </div>
             @endif
         @endforeach

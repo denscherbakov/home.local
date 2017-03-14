@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class Request extends Model
 {
-    const ACCEPT = 0;
+    const ACCEPT = 1;
+    const NO_ACCEPT = 0;
 
     protected $fillable = ['sender_id', 'taker_id', 'accept'];
 
@@ -16,33 +17,27 @@ class Request extends Model
      */
     public function setAcceptAttribute()
     {
-        $this->attributes['accept'] = self::ACCEPT;
+        $this->attributes['accept'] = self::NO_ACCEPT;
     }
 
-    public function scopeHasSendRequest($query, $user_id)
+    public function scopeWhereSend($query)
     {
-        return $query->where(['sender_id' => $user_id])->noAccepted();
+        return $query->where(['sender_id' => Auth::id()]);
     }
 
-    public function scopeHasTakeRequest($query, $user_id)
+    public function scopeWhereTake($query)
     {
-        return $query->where(['taker_id' => $user_id])->noAccepted();
+        return $query->where(['taker_id' => Auth::id()]);
     }
 
-    public function scopeFriends($query)
-    {
-        return $query->where(['taker_id' => Auth::user()->id])
-                     ->orWhere(['sender_id' => Auth::user()->id])
-                     ->accepted();
-    }
 
     public function scopeAccepted($query)
     {
-        return $query->where(['accept' => 1]);
+        return $query->where(['accept' => self::ACCEPT]);
     }
 
     public function scopeNoAccepted($query)
     {
-        return $query->where(['accept' => self::ACCEPT]);
+        return $query->where(['accept' => self::NO_ACCEPT]);
     }
 }
