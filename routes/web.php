@@ -2,6 +2,7 @@
 
 Auth::routes();
 
+Route::get('/test',function(){die('test');});
 Route::get('/',                            'HomeController@index');
 
 Route::get('article/create',               'ArticleController@create');

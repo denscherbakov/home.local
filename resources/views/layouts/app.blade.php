@@ -40,9 +40,9 @@
                         <ul>
                             <li class="dropdown">
                                 <a href="#" id="user-info" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <span class="user-login">{{ Auth::user()->name }}</span>
-                                    @if (isset(Auth::user()->userDetail->avatar))
-                                        <img class="user-avatar img-circle" src="{{asset('img/user')}}/{{ Auth::user()->userDetail->avatar }}">
+                                    <span class="user-login">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
+                                    @if (isset(\Illuminate\Support\Facades\Auth::user()->userDetail->avatar))
+                                        <img class="user-avatar img-circle" src="{{asset('img/user')}}/{{ \Illuminate\Support\Facades\Auth::user()->userDetail->avatar }}">
                                     @else
                                         <img class="user-avatar img-circle" src="{{asset('img/user/no_avatar.png')}}">
                                     @endif

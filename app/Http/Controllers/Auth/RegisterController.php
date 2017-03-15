@@ -69,10 +69,6 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password'])
         ]);
 
-        $userDerail = new UserDetail();
-        $userDerail->user_id = $user->id;
-        $userDerail->save();
-
         return $user;
     }
 }
